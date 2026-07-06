@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Jogos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header__inner">
+    <img src="assets/logo.png" alt="Portal de Jogos" class="header__logo">
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <nav class="dropdown" id="dropdownMenu">
+    <a href="#" class="dropdown__item">
+      <svg viewBox="0 0 24 24" class="dropdown__icon"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+      Login
+    </a>
+    <a href="#" class="dropdown__item">
+      <svg viewBox="0 0 24 24" class="dropdown__icon"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+      Histórico
+    </a>
+    <a href="#" class="dropdown__item">
+      <svg viewBox="0 0 24 24" class="dropdown__icon"><path d="M12 17.3 6.2 20.6l1.1-6.5L2.5 9.4l6.6-.9L12 2.5l2.9 6 6.6.9-4.8 4.7 1.1 6.5z"/></svg>
+      Jogos favoritos
+    </a>
+  </nav>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="stage">
+
+  <div class="stage__blob stage__blob--1" aria-hidden="true"></div>
+  <div class="stage__blob stage__blob--2" aria-hidden="true"></div>
+
+  <!-- orbit: anel + mascote + jogos ao redor -->
+  <div class="orbit" id="orbit">
+    <div class="orbit__ring" aria-hidden="true"></div>
+
+    <img src="assets/loba.png" alt="Mascote do Portal de Jogos" class="mascot" id="mascot">
+
+    <!-- game selector orbs, distribuídos ao redor do círculo -->
+    <ul class="orbs" id="orbList">
+      <li class="orb orb--1" data-game="memoria" tabindex="0" role="button" aria-label="Selecionar Jogo da memória">
+        <img src="assets/memoria.png" alt="Jogo da memória">
+      </li>
+      <li class="orb orb--2" data-game="cobrinha" tabindex="0" role="button" aria-label="Selecionar Jogo da cobrinha">
+        <img src="assets/cobra.png" alt="Jogo da cobrinha">
+      </li>
+      <li class="orb orb--3" data-game="uvas" tabindex="0" role="button" aria-label="Selecionar Jogo das uvas">
+        <img src="assets/uvas.png" alt="Jogo das uvas">
+      </li>
+      <li class="orb orb--4" data-game="pescaria" tabindex="0" role="button" aria-label="Selecionar Jogo da pescaria">
+        <img src="assets/urso.png" alt="Jogo da pescaria">
+      </li>
+    </ul>
+  </div>
+
+  <!-- info panel -->
+  <section class="panel" id="panel">
+    <div class="panel__glow" aria-hidden="true"></div>
+
+    <div class="panel__content" id="panelContent">
+      <h2 class="panel__title" id="panelTitle">Jogo da cobrinha</h2>
+      <p class="panel__desc" id="panelDesc">
+        Este jogo é inspirado no jogo da cobrinha dos celulares de antigamente
+      </p>
+      <img src="assets/cobra.png" alt="" class="panel__image" id="panelImage">
+      <button class="btn-jogar" id="btnJogar">Jogar</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p class="footer__title">Projeto de WebDesign - Raquel Boff</p>
+  <p class="footer__subtitle">Imbé - RS, Brasil, 2026</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

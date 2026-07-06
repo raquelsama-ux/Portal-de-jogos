@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jogo da Memória | Portal de Jogos</title>
+
+    <link rel="stylesheet" href="memoria.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+
+                <img src="assets/logo.png" alt="Portal de Jogos">
+
+            </a>
+
+            <button id="menuBtn" class="menu-btn">
+
+                ☰
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MENU ================= -->
+
+    <div id="menu" class="side-menu">
+
+        <button id="closeMenu" class="close-menu">
+
+            ×
+
+        </button>
+
+        <a href="#">Login</a>
+
+        <a href="#">Histórico</a>
+
+        <a href="#">Favoritos</a>
+
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+
+
+    <!-- ================= CONTEÚDO ================= -->
+
+    <main class="container">
+
+        <h1 class="page-title">
+
+            🐮 Jogo da Memória 🐷
+
+        </h1>
+
+        <p class="subtitle">
+
+            Encontre todos os pares de animais!
+
+        </p>
+
+
+        <section class="menu">
+
+            <div class="difficulty">
+
+                <button id="easyBtn" class="difficulty-btn active">
+
+                    Fácil
+
+                </button>
+
+                <button id="hardBtn" class="difficulty-btn">
+
+                    Difícil
+
+                </button>
+
+            </div>
+
+            <button id="startBtn" class="start-btn">
+
+                ▶ Começar
+
+            </button>
+
+        </section>
+
+
+
+        <section class="status">
+
+            <div class="info-card">
+
+                <span class="label">
+
+                    ⏱ Tempo
+
+                </span>
+
+                <span id="timer" class="value">
+
+                    00:00
+
+                </span>
+
+            </div>
+
+            <div class="info-card">
+
+                <span class="label">
+
+                    🏆 Pares
+
+                </span>
+
+                <span id="pairs">
+
+                    0 / 6
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <div id="gameBoard" class="board">
+
+            <!-- Cartas criadas pelo JavaScript -->
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= MODAL DE VITÓRIA ================= -->
+
+    <div id="winScreen" class="win-screen hidden">
+
+        <div class="win-box">
+
+            <h2>
+
+                🎉 Parabéns!
+
+            </h2>
+
+            <p>
+
+                Você encontrou todos os pares!
+
+            </p>
+
+            <h3 id="finalTime">
+
+                Tempo: 00:00
+
+            </h3>
+
+            <button id="playAgain">
+
+                Jogar Novamente
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+
+            Projeto de WebDesign - Raquel Boff
+
+        </h3>
+
+        <p>
+
+            Imbé - RS, Brasil, 2026
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= ASSETS ================= -->
+
+    <script>
+
+        const animals = [
+
+            {
+                name: "boi",
+                image: "assets/memoria/boi.png"
+            },
+
+            {
+                name: "cachorro",
+                image: "assets/memoria/cachorro.png"
+            },
+
+            {
+                name: "cavalo",
+                image: "assets/memoria/cavalo.png"
+            },
+
+            {
+                name: "coelho",
+                image: "assets/memoria/coelho.png"
+            },
+
+            {
+                name: "galinha",
+                image: "assets/memoria/galinha.png"
+            },
+
+            {
+                name: "galo",
+                image: "assets/memoria/galo.png"
+            },
+
+            {
+                name: "gato",
+                image: "assets/memoria/gato.png"
+            },
+
+            {
+                name: "minhoca",
+                image: "assets/memoria/minhoca.png"
+            },
+
+            {
+                name: "pato",
+                image: "assets/memoria/pato.png"
+            },
+
+            {
+                name: "porco",
+                image: "assets/memoria/porco.png"
+            }
+
+        ];
+
+    </script>
+
+    <script src="memoria.js"></script>
+
+</body>
+
+</html>
