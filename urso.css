@@ -1,0 +1,683 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    min-height:100vh;
+
+    font-family:"Baloo 2",sans-serif;
+
+    background:#FAF0CA;
+
+    color:#0D3B66;
+
+}
+
+body{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    width:100%;
+
+    background:#0D3B66;
+
+    height:90px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:500;
+
+}
+
+.header__inner{
+
+    width:min(1200px,95%);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+.header__logo{
+
+    height:58px;
+
+    cursor:pointer;
+
+}
+
+.menu-toggle{
+
+    position:absolute;
+
+    right:0;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+.menu-toggle span{
+
+    width:34px;
+
+    height:4px;
+
+    background:white;
+
+    border-radius:10px;
+
+    transition:.25s;
+
+}
+
+.menu-toggle:hover span{
+
+    background:#F4D35E;
+
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.dropdown{
+
+    position:absolute;
+
+    top:90px;
+
+    right:20px;
+
+    width:220px;
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 30px rgba(0,0,0,.18);
+
+    display:none;
+
+    z-index:900;
+
+}
+
+.dropdown.is-open{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.dropdown a{
+
+    text-decoration:none;
+
+    color:#0D3B66;
+
+    font-weight:700;
+
+    padding:18px;
+
+    transition:.25s;
+
+}
+
+.dropdown a:hover{
+
+    background:#F4D35E;
+
+}
+
+/* =====================================================
+   ÁREA DO JOGO
+===================================================== */
+
+.game-container{
+
+    flex:1;
+
+    width:min(1250px,96%);
+
+    margin:35px auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+/* =====================================================
+   HUD
+===================================================== */
+
+.hud{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.box{
+
+    background:white;
+
+    min-width:170px;
+
+    padding:15px 25px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.12);
+
+    color:#0D3B66;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+}
+
+.box span{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:2rem;
+
+    color:#F95738;
+
+}
+
+/* =====================================================
+   CANVAS
+===================================================== */
+
+#gameCanvas{
+
+    width:100%;
+
+    max-width:1200px;
+
+    aspect-ratio:12/7;
+
+    background:#69B7FF;
+
+    border-radius:22px;
+
+    border:8px solid #0D3B66;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.20);
+
+    display:block;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:auto;
+
+    width:100%;
+
+    background:#0D3B66;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px 10px;
+
+}
+
+.footer__title{
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+}
+
+.footer__subtitle{
+
+    margin-top:4px;
+
+    opacity:.9;
+
+}
+
+/* =====================================================
+   UTILIDADES
+===================================================== */
+
+.hidden{
+
+    display:none !important;
+
+}
+
+/* =====================================================
+   TELA INICIAL / TELA FINAL
+===================================================== */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(13,59,102,.75);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:1000;
+
+    padding:20px;
+
+}
+
+.menu-card{
+
+    width:min(520px,95%);
+
+    background:#FFF8E8;
+
+    border-radius:28px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.30);
+
+    border:6px solid #F4D35E;
+
+    animation:pop .45s ease;
+
+}
+
+.menu-card h1{
+
+    color:#F95738;
+
+    font-size:2.6rem;
+
+    margin-bottom:18px;
+
+}
+
+.menu-card h2{
+
+    color:#0D3B66;
+
+    font-size:1.8rem;
+
+    margin:15px 0;
+
+}
+
+.menu-card p{
+
+    color:#0D3B66;
+
+    font-size:1.15rem;
+
+    line-height:1.6;
+
+}
+
+/* =====================================================
+   LEGENDA DOS PEIXES
+===================================================== */
+
+.points{
+
+    margin:30px 0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.points p{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+}
+
+.points img{
+
+    width:54px;
+
+    image-rendering:pixelated;
+
+}
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+#startBtn,
+#restartBtn{
+
+    border:none;
+
+    cursor:pointer;
+
+    margin-top:20px;
+
+    padding:16px 40px;
+
+    border-radius:18px;
+
+    background:#F95738;
+
+    color:white;
+
+    font-family:"Baloo 2",sans-serif;
+
+    font-size:1.4rem;
+
+    font-weight:800;
+
+    transition:.20s;
+
+    box-shadow:0 10px 25px rgba(249,87,56,.35);
+
+}
+
+#startBtn:hover,
+#restartBtn:hover{
+
+    background:#EE964B;
+
+    transform:translateY(-3px);
+
+}
+
+#startBtn:active,
+#restartBtn:active{
+
+    transform:scale(.96);
+
+}
+
+/* =====================================================
+   PONTUAÇÃO FINAL
+===================================================== */
+
+#finalScore{
+
+    font-size:4rem;
+
+    color:#F95738;
+
+    margin:18px 0;
+
+}
+
+/* =====================================================
+   ANIMAÇÕES
+===================================================== */
+
+@keyframes pop{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.8);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.box{
+
+    animation:pulse 2.5s infinite;
+
+}
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width:900px){
+
+    .header{
+
+        height:80px;
+
+    }
+
+    .header__logo{
+
+        height:48px;
+
+    }
+
+    .menu-card{
+
+        padding:30px;
+
+    }
+
+    .menu-card h1{
+
+        font-size:2rem;
+
+    }
+
+    .menu-card h2{
+
+        font-size:1.5rem;
+
+    }
+
+    .menu-card p{
+
+        font-size:1rem;
+
+    }
+
+    .box{
+
+        min-width:140px;
+
+        font-size:1rem;
+
+    }
+
+    .box span{
+
+        font-size:1.6rem;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .hud{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:15px;
+
+    }
+
+    .box{
+
+        width:220px;
+
+    }
+
+    .menu-card{
+
+        padding:24px;
+
+    }
+
+    .menu-card h1{
+
+        font-size:1.8rem;
+
+    }
+
+    .points img{
+
+        width:42px;
+
+    }
+
+    #startBtn,
+    #restartBtn{
+
+        width:100%;
+
+        font-size:1.2rem;
+
+    }
+
+}
+
+/* =====================================================
+   CANVAS MOBILE
+===================================================== */
+
+@media (max-width:1200px){
+
+    #gameCanvas{
+
+        width:100%;
+        height:auto;
+
+    }
+
+}
+
+/* =====================================================
+   PIXEL ART
+===================================================== */
+
+#gameCanvas,
+.points img{
+
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
+
+}
+

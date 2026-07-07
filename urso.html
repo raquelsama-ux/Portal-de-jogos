@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jogo da Pescaria | Portal de Jogos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="urso.css">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="header__inner">
+
+        <a href="index.html">
+
+            <img src="assets/logo.png" class="header__logo" alt="Portal de Jogos">
+
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+    <nav class="dropdown" id="dropdownMenu">
+
+        <a href="#">Login</a>
+
+        <a href="#">Histórico</a>
+
+        <a href="#">Favoritos</a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= MENU INICIAL ================= -->
+
+<div id="startScreen" class="overlay">
+
+    <div class="menu-card">
+
+        <h1>🐻 Jogo da Pescaria</h1>
+
+        <p>
+
+            Segure a barra de espaço para escolher o ângulo do lançamento.
+
+            Solte a tecla para lançar a linha.
+
+        </p>
+
+        <div class="points">
+
+            <p><img src="assets/urso/peixep.png"> = 1 ponto</p>
+
+            <p><img src="assets/urso/peixem.png"> = 2 pontos</p>
+
+            <p><img src="assets/urso/peixeg.png"> = 5 pontos</p>
+
+        </div>
+
+        <button id="startBtn">
+
+            ▶ Começar
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= JOGO ================= -->
+
+<main class="game-container">
+
+    <div class="hud">
+
+        <div class="box">
+
+            ⏱ Tempo
+
+            <span id="timer">
+
+                30
+
+            </span>
+
+        </div>
+
+        <div class="box">
+
+            ⭐ Pontos
+
+            <span id="score">
+
+                0
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <canvas id="gameCanvas" width="1200" height="700"></canvas>
+
+</main>
+
+
+<!-- ================= TELA FINAL ================= -->
+
+<div id="winScreen" class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1>
+
+            🎉 Parabéns!
+
+        </h1>
+
+        <p>
+
+            O tempo acabou!
+
+        </p>
+
+        <h2>
+
+            Sua pontuação:
+
+        </h2>
+
+        <h1 id="finalScore">
+
+            0
+
+        </h1>
+
+        <button id="restartBtn">
+
+            Jogar novamente
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p class="footer__title">
+
+        Projeto de WebDesign - Raquel Boff
+
+    </p>
+
+    <p class="footer__subtitle">
+
+        Imbé - RS, Brasil, 2026
+
+    </p>
+
+</footer>
+
+
+<script src="urso.js"></script>
+
+</body>
+
+</html>

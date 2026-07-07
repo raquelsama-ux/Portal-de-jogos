@@ -29,7 +29,7 @@ const GAMES = {
     title: 'Jogo da pescaria',
     desc: 'Controle o urso pescador e capture o maior número de peixes antes que o tempo termine.',
     image: 'assets/urso.png',
-    href: '#'
+    href: 'urso.html'
   }
 };
 
