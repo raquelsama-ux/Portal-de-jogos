@@ -58,6 +58,8 @@
 
 <!-- ================= MENU INICIAL ================= -->
 
+<!-- ================= MENU INICIAL ================= -->
+
 <div id="startScreen" class="overlay">
 
     <div class="menu-card">
@@ -65,33 +67,63 @@
         <h1>🐻 Jogo da Pescaria</h1>
 
         <p>
-
             Segure a barra de espaço para escolher o ângulo do lançamento.
-
+            <br>
             Solte a tecla para lançar a linha.
-
         </p>
 
         <div class="points">
 
-            <p><img src="assets/urso/peixep.png"> = 1 ponto</p>
+            <p>
+                <img src="assets/urso/peixep.png" alt="Peixe pequeno">
+                = 1 ponto
+            </p>
 
-            <p><img src="assets/urso/peixem.png"> = 2 pontos</p>
+            <p>
+                <img src="assets/urso/peixem.png" alt="Peixe médio">
+                = 2 pontos
+            </p>
 
-            <p><img src="assets/urso/peixeg.png"> = 5 pontos</p>
+            <p>
+                <img src="assets/urso/peixeg.png" alt="Peixe grande">
+                = 5 pontos
+            </p>
 
         </div>
 
-        <button id="startBtn">
+        <div class="menu-buttons">
 
-            ▶ Começar
+    <button id="startBtn">
+        ▶ Começar
+    </button>
 
-        </button>
+    <button id="rankingBtn" class="secondaryBtn">
+        🏆 Top 10
+    </button>
+
+</div>
 
     </div>
 
 </div>
 
+<!-- ================= RANKING ================= -->
+
+<div id="rankingScreen" class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1>🏆 Top 10</h1>
+
+        <ol id="rankingOnlyList"></ol>
+
+        <button id="closeRankingBtn" class="secondaryBtn">
+            Fechar
+        </button>
+
+    </div>
+
+</div>
 
 <!-- ================= JOGO ================= -->
 
@@ -137,39 +169,43 @@
 
     <div class="menu-card">
 
-        <h1>
+        <h1>🎉 Parabéns, pescador!</h1>
 
-            🎉 Parabéns!
-
-        </h1>
-
-        <p>
-
-            O tempo acabou!
-
-        </p>
+       <p id="resultMessage"></p>
 
         <h2>
-
             Sua pontuação:
-
+            <span id="finalScore">0</span>
         </h2>
 
-        <h1 id="finalScore">
+<div id="saveArea">
 
-            0
+    <input
+        id="playerName"
+        maxlength="20"
+        placeholder="Digite seu nome">
 
-        </h1>
+    <button id="saveScoreBtn">
+
+        Salvar pontuação
+
+    </button>
+
+</div>
+
+        <h2>🏆 Top 10</h2>
+
+        <ol id="rankingList"></ol>
 
         <button id="restartBtn">
-
-            Jogar novamente
-
+            Tentar novamente
         </button>
 
     </div>
 
 </div>
+
+
 
 
 <!-- ================= FOOTER ================= -->

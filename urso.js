@@ -34,7 +34,7 @@ const finalScore = document.getElementById("finalScore");
 // ===============================
 
 const background = new Image();
-background.src = "assets/urso/fundo.png";
+background.src = "assets/urso/fundo.jpg";
 
 const bear = new Image();
 bear.src = "assets/urso/ursopescando.png";
@@ -68,27 +68,27 @@ let gameRunning = false;
 
 const fisherman = {
 
-    x: 160,
+    x:250,
 
-    y: 225,
+    y:35,
 
-    angle: 35,
+    angle:35,
 
-    minAngle: 15,
+    minAngle:15,
 
-    maxAngle: 75,
+    maxAngle:75,
 
-    direction: 1,
+    direction:1,
 
-    speed: 1.2,
+    speed:1.2,
 
-    casting: false,
+    casting:false,
 
-    hookLength: 0,
+    hookLength:0,
 
-    maxLength: 950,
+    maxLength:950,
 
-    retracting: false
+    retracting:false
 
 };
 
@@ -124,7 +124,7 @@ class Fish{
 
                 this.speed = 2.8;
 
-                this.y = random(110,180);
+                this.y = random(320,390);
 
                 break;
 
@@ -140,7 +140,7 @@ class Fish{
 
                 this.speed = 2;
 
-                this.y = random(260,360);
+                this.y = random(420,510);
 
                 break;
 
@@ -156,7 +156,7 @@ class Fish{
 
                 this.speed = 1.2;
 
-                this.y = random(470,610);
+                this.y = random(560,640);
 
                 break;
 
@@ -728,13 +728,13 @@ function drawFish(){
 
 function drawBear(){
 
-    ctx.drawImage(
-        bear,
-        40,
-        80,
-        260,
-        260
-    );
+   ctx.drawImage(
+    bear,
+    30,     // mais para a esquerda
+    15,     // sobe para sentar no banco de areia
+    220,    // largura menor
+    220     // altura menor
+);
 
 }
 
@@ -974,3 +974,222 @@ if(menuToggle){
 createFish();
 
 gameLoop();
+
+
+const rankingBtn =
+document.getElementById("rankingBtn");
+
+const rankingScreen =
+document.getElementById("rankingScreen");
+
+const rankingOnlyList =
+document.getElementById("rankingOnlyList");
+
+const closeRankingBtn =
+document.getElementById("closeRankingBtn");
+
+const rankingList =
+document.getElementById("rankingList");
+
+const saveScoreBtn =
+document.getElementById("saveScoreBtn");
+
+const playerName =
+document.getElementById("playerName");
+
+function getRanking(){
+
+    return JSON.parse(
+
+        localStorage.getItem("rankingPescaria")
+
+    ) || [];
+
+}
+
+function saveRanking(list){
+
+    localStorage.setItem(
+
+        "rankingPescaria",
+
+        JSON.stringify(list)
+
+    );
+
+}
+
+
+function updateRanking(highlightName = "") {
+
+    const ranking = getRanking();
+
+    ranking.sort((a, b) => b.score - a.score);
+
+    ranking.splice(10);
+
+    rankingList.innerHTML = "";
+    rankingOnlyList.innerHTML = "";
+
+    ranking.forEach((player, index) => {
+
+        const highlight = player.name === highlightName
+            ? ' class="ranking-highlight"'
+            : "";
+
+        const html = `
+            <li${highlight}>
+                <span>${index + 1}. ${player.name}</span>
+                <strong>${player.score}</strong>
+            </li>
+        `;
+
+        rankingList.innerHTML += html;
+        rankingOnlyList.innerHTML += html;
+
+    });
+
+}
+
+
+
+saveScoreBtn.addEventListener("click",()=>{
+
+    let name = playerName.value.trim();
+
+    if(name===""){
+
+        name="Anônimo";
+    saveArea.style.display = "none";
+
+    }
+
+    const ranking = getRanking();
+
+    ranking.push({
+
+        name,
+
+        score
+
+    });
+
+    ranking.sort((a,b)=>b.score-a.score);
+
+    ranking.splice(10);
+
+    saveRanking(ranking);
+
+    updateRanking();
+
+    saveScoreBtn.disabled=true;
+
+});
+
+rankingBtn.addEventListener("click",()=>{
+
+    updateRanking();
+
+    rankingScreen.classList.remove("hidden");
+
+});
+
+closeRankingBtn.addEventListener("click",()=>{
+
+    rankingScreen.classList.add("hidden");
+
+});
+
+function finishGame(){
+
+    clearInterval(timer);
+
+    gameRunning=false;
+
+    finalScore.textContent=score;
+
+    playerName.value="";
+
+    saveScoreBtn.disabled=false;
+
+    updateRanking();
+
+    winScreen.classList.remove("hidden");
+
+}
+
+
+restartBtn.addEventListener("click",()=>{
+
+    winScreen.classList.add("hidden");
+
+    playerName.value="";
+
+    score=0;
+
+    scoreDisplay.textContent=0;
+
+    createFish();
+
+    startTimer();
+
+    gameRunning=true;
+
+});
+
+function isTopTen(score){
+
+    const ranking = getRanking();
+
+    if(ranking.length < 10){
+
+        return true;
+
+    }
+
+    ranking.sort((a,b)=>b.score-a.score);
+
+    return score > ranking[9].score;
+
+}
+
+const resultMessage =
+document.getElementById("resultMessage");
+
+const saveArea =
+document.getElementById("saveArea");
+
+function finishGame(){
+
+    clearInterval(timer);
+
+    gameRunning = false;
+
+    finalScore.textContent = score;
+
+    playerName.value = "";
+
+    saveScoreBtn.disabled = false;
+
+    updateRanking();
+
+    if(isTopTen(score)){
+
+        resultMessage.textContent =
+        "Você conquistou um lugar no Top 10!";
+
+        saveArea.style.display = "block";
+
+    }else{
+
+        resultMessage.textContent =
+        "Você não entrou no Top 10 desta vez.";
+
+        saveArea.style.display = "none";
+
+    }
+
+    winScreen.classList.remove("hidden");
+
+}
+

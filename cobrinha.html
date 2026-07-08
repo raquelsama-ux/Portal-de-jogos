@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo da Cobrinha - Portal de Jogos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="cobrinha.css">
+</head>
+<body>
+
+<!-- ===== HEADER (igual ao index.html) ===== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html"><img src="assets/logo.png" alt="Portal de Jogos" class="header__logo"></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <nav class="dropdown" id="dropdownMenu">
+    <a href="#" class="dropdown__item">
+      <svg viewBox="0 0 24 24" class="dropdown__icon"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+      Login
+    </a>
+    <a href="#" class="dropdown__item">
+      <svg viewBox="0 0 24 24" class="dropdown__icon"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+      Histórico
+    </a>
+    <a href="#" class="dropdown__item">
+      <svg viewBox="0 0 24 24" class="dropdown__icon"><path d="M12 17.3 6.2 20.6l1.1-6.5L2.5 9.4l6.6-.9L12 2.5l2.9 6 6.6.9-4.8 4.7 1.1 6.5z"/></svg>
+      Jogos favoritos
+    </a>
+  </nav>
+</header>
+
+<!-- ===== JOGO ===== -->
+<main class="game-stage">
+
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" class="back-link__icon"><path d="M15 18l-6-6 6-6"/></svg>
+    Voltar ao portal
+  </a>
+
+  <div class="game-frame">
+
+    <div class="hud">
+      <span class="hud__label">Pontuação</span>
+      <span class="hud__score" id="scoreValue">0</span>
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+      <!-- overlay: menu inicial -->
+      <div class="overlay" id="menuOverlay">
+        <div class="overlay__card">
+          <h1 class="overlay__title">Jogo da Cobrinha</h1>
+          <p class="overlay__text">
+            Use as setas do teclado para guiar a cobra, coma os ratinhos para
+            crescer e desvie dos espinhos!
+          </p>
+          <button class="btn-jogar" id="btnStart">Começar</button>
+        </div>
+      </div>
+
+      <!-- overlay: fim de jogo -->
+      <div class="overlay is-hidden" id="gameOverOverlay">
+        <div class="overlay__card">
+          <h1 class="overlay__title">Fim de jogo!</h1>
+          <p class="overlay__text">Você marcou</p>
+          <p class="overlay__final-score" id="finalScore">0</p>
+          <p class="overlay__text overlay__text--small">pontos</p>
+          <button class="btn-jogar" id="btnRetry">Tentar novamente</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ===== FOOTER (igual ao index.html) ===== -->
+<footer class="footer">
+  <p class="footer__title">Projeto de WebDesign - Raquel Boff</p>
+  <p class="footer__subtitle">Imbé - RS, Brasil, 2026</p>
+</footer>
+
+<script src="cobrinha.js"></script>
+</body>
+</html>
