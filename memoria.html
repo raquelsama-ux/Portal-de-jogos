@@ -107,6 +107,12 @@
 
             </button>
 
+            <button id="rankingBtn" class="start-btn ranking-btn">
+
+                🏆 Ranking
+
+            </button>
+
         </section>
 
 
@@ -183,17 +189,51 @@
 
             </h3>
 
-            <button id="playAgain">
+            <h3 id="finalRank" class="final-rank">
 
-                Jogar Novamente
+                Mestre dos Animais
 
-            </button>
+            </h3>
+
+            <div id="namePrompt" class="name-prompt" style="display:none;">
+                <p>Parabéns! Você entrou no Top 10. Digite seu nome:</p>
+                <input id="playerNameInput" type="text" maxlength="20" placeholder="Seu nome">
+                <button id="saveScoreBtn" class="save-score-btn">Salvar</button>
+            </div>
+
+            <div class="win-actions">
+                <button id="playAgain">
+
+                    Jogar Novamente
+
+                </button>
+
+                <button id="rankingGameOverBtn" class="secondary-btn">
+
+                    Ranking
+
+                </button>
+            </div>
 
         </div>
 
     </div>
 
 
+
+    <div id="rankingOverlay" class="ranking-overlay hidden">
+
+        <div class="ranking-box">
+
+            <h2 id="rankingTitle">🏆 Ranking da Memória — Fácil</h2>
+
+            <ol id="rankingList" class="ranking-list"></ol>
+
+            <button id="closeRankingBtn" class="secondary-btn">Voltar</button>
+
+        </div>
+
+    </div>
 
     <!-- ================= FOOTER ================= -->
 

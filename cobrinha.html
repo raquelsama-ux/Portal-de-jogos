@@ -65,7 +65,10 @@
             Use as setas do teclado para guiar a cobra, coma os ratinhos para
             crescer e desvie dos espinhos!
           </p>
-          <button class="btn-jogar" id="btnStart">Começar</button>
+          <div class="overlay__actions">
+            <button class="btn-jogar" id="btnStart">Começar</button>
+            <button class="btn-jogar btn-jogar--secondary" id="btnRanking">Ranking</button>
+          </div>
         </div>
       </div>
 
@@ -75,8 +78,26 @@
           <h1 class="overlay__title">Fim de jogo!</h1>
           <p class="overlay__text">Você marcou</p>
           <p class="overlay__final-score" id="finalScore">0</p>
-          <p class="overlay__text overlay__text--small">pontos</p>
-          <button class="btn-jogar" id="btnRetry">Tentar novamente</button>
+          <p class="overlay__text overlay__text--small" id="finalRank">Novato da Grama</p>
+
+          <div id="namePrompt" class="name-prompt" style="display:none;">
+            <p class="overlay__text overlay__text--small">Parabéns! Você entrou no Top 10. Digite seu nome:</p>
+            <input id="playerNameInput" type="text" maxlength="20" placeholder="Seu nome">
+            <button class="btn-jogar" id="saveScoreBtn">Salvar</button>
+          </div>
+
+          <div class="overlay__actions">
+            <button class="btn-jogar" id="btnRetry">Tentar novamente</button>
+            <button class="btn-jogar btn-jogar--secondary" id="btnRankingGameOver">Ranking</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay is-hidden" id="rankingOverlay">
+        <div class="overlay__card overlay__card--ranking">
+          <h1 class="overlay__title">🏆 Ranking da Cobrinha</h1>
+          <ol id="rankingList" class="ranking-list"></ol>
+          <button class="btn-jogar btn-jogar--secondary" id="rankingBackBtn">Voltar</button>
         </div>
       </div>
     </div>

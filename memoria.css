@@ -138,7 +138,9 @@ MENU
 
 .difficulty-btn,
 .start-btn,
-#playAgain{
+#playAgain,
+.secondary-btn,
+.save-score-btn{
 
     font-family:'Fredoka',sans-serif;
 
@@ -200,6 +202,26 @@ MENU
 
 }
 
+.ranking-btn{
+    background:#0D3B66;
+    color:white;
+}
+
+.secondary-btn,
+.save-score-btn{
+    padding:12px 24px;
+    border-radius:30px;
+    background:#EE964B;
+    color:white;
+    font-family:'Fredoka',sans-serif;
+    border:none;
+    cursor:pointer;
+}
+
+.secondary-btn:hover,
+.save-score-btn:hover{
+    background:#F95738;
+}
 
 /* ==========================
 STATUS
@@ -512,6 +534,71 @@ TELA FINAL
 
 }
 
+.win-actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.name-prompt{
+    margin:16px 0 20px;
+}
+
+.name-prompt input{
+    width:min(260px, 100%);
+    padding:12px 14px;
+    border:2px solid #F4D35E;
+    border-radius:999px;
+    margin:10px auto;
+    display:block;
+    font-family:'Fredoka',sans-serif;
+}
+
+.final-rank{
+    color:#0D3B66;
+    margin-bottom:16px;
+}
+
+.ranking-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(13,59,102,.78);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.ranking-overlay.hidden{
+    display:none;
+}
+
+.ranking-box{
+    width:min(420px,90%);
+    background:white;
+    border-radius:25px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.ranking-box h2{
+    color:#F95738;
+    margin-bottom:16px;
+}
+
+.ranking-list{
+    text-align:left;
+    padding-left:20px;
+    margin:12px 0 20px;
+    color:#0D3B66;
+    font-weight:600;
+}
+
+.ranking-list li{
+    margin-bottom:8px;
+}
 
 /* ==========================
 RESPONSIVO

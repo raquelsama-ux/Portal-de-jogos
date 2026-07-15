@@ -39,10 +39,22 @@ const ctx    = canvas.getContext('2d');
 
 const menuOverlay     = document.getElementById('menuOverlay');
 const gameOverOverlay = document.getElementById('gameOverOverlay');
+const rankingOverlay  = document.getElementById('rankingOverlay');
 const scoreValueEl    = document.getElementById('scoreValue');
 const finalScoreEl    = document.getElementById('finalScore');
+const finalRankEl     = document.getElementById('finalRank');
 const btnStart        = document.getElementById('btnStart');
 const btnRetry        = document.getElementById('btnRetry');
+const btnRanking      = document.getElementById('btnRanking');
+const btnRankingGameOver = document.getElementById('btnRankingGameOver');
+const rankingBackBtn  = document.getElementById('rankingBackBtn');
+const rankingList     = document.getElementById('rankingList');
+const namePrompt      = document.getElementById('namePrompt');
+const playerNameInput = document.getElementById('playerNameInput');
+const saveScoreBtn    = document.getElementById('saveScoreBtn');
+const STORAGE_KEY     = 'snakeRanking';
+const MAX_RANKING     = 10;
+let rankingSource    = 'menu';
 
 // ---- carregamento das imagens ----
 const IMG_SRC = {
@@ -174,12 +186,17 @@ window.addEventListener('keydown', (e) => {
 
 btnStart.addEventListener('click', startGame);
 btnRetry.addEventListener('click', startGame);
+btnRanking.addEventListener('click', () => showRanking('menu'));
+btnRankingGameOver.addEventListener('click', () => showRanking('gameover'));
+rankingBackBtn.addEventListener('click', closeRanking);
+saveScoreBtn.addEventListener('click', saveCurrentScore);
 
 function startGame(){
   resetGame();
   state = 'playing';
   menuOverlay.classList.add('is-hidden');
   gameOverOverlay.classList.add('is-hidden');
+  rankingOverlay.classList.add('is-hidden');
   if (rafId) cancelAnimationFrame(rafId);
   rafId = requestAnimationFrame(loop);
 }
@@ -187,7 +204,95 @@ function startGame(){
 function endGame(){
   state = 'gameover';
   finalScoreEl.textContent = String(score);
+  finalRankEl.textContent = getSnakeRank(score);
+
+  if (isHighScore(score)){
+    namePrompt.style.display = 'block';
+    playerNameInput.value = '';
+    playerNameInput.focus();
+    btnRetry.style.display = 'none';
+  } else {
+    namePrompt.style.display = 'none';
+    btnRetry.style.display = 'inline-block';
+  }
+
   gameOverOverlay.classList.remove('is-hidden');
+}
+
+function getSnakeRank(score){
+  if (score >= 20) return 'Lenda da Grama';
+  if (score >= 15) return 'Mestre da Cobrinha';
+  if (score >= 10) return 'Caçador de Ratinhos';
+  if (score >= 5) return 'Explorador da Floresta';
+  return 'Novato da Grama';
+}
+
+function getRanking(){
+  const data = localStorage.getItem(STORAGE_KEY);
+  if (!data) return [];
+
+  try {
+    const parsed = JSON.parse(data);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.sort((a, b) => b.score - a.score).slice(0, MAX_RANKING);
+  } catch {
+    return [];
+  }
+}
+
+function isHighScore(score){
+  const ranking = getRanking();
+  return ranking.length < MAX_RANKING || score > ranking[ranking.length - 1].score;
+}
+
+function saveHighScore(name, scoreValue){
+  const ranking = getRanking();
+  ranking.push({ name, score: scoreValue });
+  ranking.sort((a, b) => b.score - a.score);
+  const trimmed = ranking.slice(0, MAX_RANKING);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
+}
+
+function saveCurrentScore(){
+  const name = playerNameInput.value.trim() || 'Jogador';
+  saveHighScore(name, score);
+  playerNameInput.value = '';
+  namePrompt.style.display = 'none';
+  btnRetry.style.display = 'inline-block';
+  showRanking('gameover');
+}
+
+function showRanking(source){
+  rankingSource = source;
+  menuOverlay.classList.add('is-hidden');
+  gameOverOverlay.classList.add('is-hidden');
+  rankingOverlay.classList.remove('is-hidden');
+
+  const ranking = getRanking();
+  rankingList.innerHTML = '';
+
+  if (ranking.length === 0){
+    const item = document.createElement('li');
+    item.textContent = 'Ainda não há pontuações registradas.';
+    rankingList.appendChild(item);
+    return;
+  }
+
+  ranking.forEach((entry, index) => {
+    const item = document.createElement('li');
+    item.textContent = `${index + 1}. ${entry.name} — ${entry.score} pontos`;
+    rankingList.appendChild(item);
+  });
+}
+
+function closeRanking(){
+  rankingOverlay.classList.add('is-hidden');
+
+  if (rankingSource === 'gameover' && state === 'gameover'){
+    gameOverOverlay.classList.remove('is-hidden');
+  } else {
+    menuOverlay.classList.remove('is-hidden');
+  }
 }
 
 // ---- loop principal ----

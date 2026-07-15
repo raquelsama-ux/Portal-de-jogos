@@ -164,6 +164,50 @@
   padding:13px 40px;
 }
 
+.overlay__actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:12px;
+}
+
+.btn-jogar--secondary{
+  background:#fff;
+  color:var(--navy-deep);
+}
+
+.name-prompt{
+  margin:10px 0 8px;
+}
+
+.name-prompt input{
+  width:min(260px, 100%);
+  padding:12px 14px;
+  border:2px solid rgba(255,255,255,.45);
+  border-radius:999px;
+  margin:8px auto 10px;
+  display:block;
+  font-size:1rem;
+  font-family:var(--font-body);
+}
+
+.ranking-list{
+  text-align:left;
+  margin:12px 0 16px;
+  padding-left:20px;
+  color:rgba(255,255,255,.96);
+  font-weight:700;
+}
+
+.ranking-list li{
+  margin-bottom:8px;
+}
+
+.overlay__card--ranking{
+  width:min(420px, 86%);
+}
+
 @media (max-width:480px){
   .hud{ padding:8px 20px; }
   .overlay__title{ font-size:1.4rem; }

@@ -14,7 +14,20 @@ const startBtn = document.getElementById("startBtn");
 
 const winScreen = document.getElementById("winScreen");
 const finalTime = document.getElementById("finalTime");
+const finalRank = document.getElementById("finalRank");
 const playAgain = document.getElementById("playAgain");
+const rankingBtn = document.getElementById("rankingBtn");
+const rankingGameOverBtn = document.getElementById("rankingGameOverBtn");
+const rankingOverlay = document.getElementById("rankingOverlay");
+const rankingTitle = document.getElementById("rankingTitle");
+const rankingList = document.getElementById("rankingList");
+const closeRankingBtn = document.getElementById("closeRankingBtn");
+const namePrompt = document.getElementById("namePrompt");
+const playerNameInput = document.getElementById("playerNameInput");
+const saveScoreBtn = document.getElementById("saveScoreBtn");
+const RANKING_KEY_PREFIX = "memoryRanking_";
+const MAX_RANKING = 10;
+let rankingSource = "menu";
 
 
 // ======================================
@@ -111,6 +124,10 @@ hardBtn.addEventListener("click",()=>{
 });
 
 startBtn.addEventListener("click",startGame);
+rankingBtn.addEventListener("click",()=>showRanking("menu"));
+rankingGameOverBtn.addEventListener("click",()=>showRanking("gameover"));
+closeRankingBtn.addEventListener("click",closeRanking);
+saveScoreBtn.addEventListener("click",saveCurrentScore);
 
 playAgain.addEventListener("click",()=>{
 
@@ -355,8 +372,99 @@ function showWinScreen() {
     finalTime.textContent =
         `Você encontrou todos os pares em ${min}:${sec}!`;
 
+    finalRank.textContent = getMemoryRank(seconds);
+
+    if (isHighScore(seconds)) {
+        namePrompt.style.display = "block";
+        playerNameInput.value = "";
+        playerNameInput.focus();
+        playAgain.style.display = "none";
+    } else {
+        namePrompt.style.display = "none";
+        playAgain.style.display = "inline-block";
+    }
+
     winScreen.classList.remove("hidden");
 
+}
+
+function getMemoryRank(timeInSeconds) {
+    if (timeInSeconds <= 20) return "Mestre dos Animais";
+    if (timeInSeconds <= 35) return "Caçador de Pares";
+    if (timeInSeconds <= 50) return "Memória em Foco";
+    return "Aprendiz da Memória";
+}
+
+function getRankingKey() {
+    return `${RANKING_KEY_PREFIX}${difficulty}`;
+}
+
+function getRanking() {
+    const key = getRankingKey();
+    const data = localStorage.getItem(key);
+    if (!data) return [];
+
+    try {
+        const parsed = JSON.parse(data);
+        if (!Array.isArray(parsed)) return [];
+        return parsed.sort((a, b) => a.time - b.time).slice(0, MAX_RANKING);
+    } catch {
+        return [];
+    }
+}
+
+function isHighScore(timeInSeconds) {
+    const ranking = getRanking();
+    return ranking.length < MAX_RANKING || timeInSeconds < ranking[ranking.length - 1].time;
+}
+
+function saveHighScore(name, timeInSeconds) {
+    const key = getRankingKey();
+    const ranking = getRanking();
+    ranking.push({ name, time: timeInSeconds });
+    ranking.sort((a, b) => a.time - b.time);
+    const trimmed = ranking.slice(0, MAX_RANKING);
+    localStorage.setItem(key, JSON.stringify(trimmed));
+}
+
+function saveCurrentScore() {
+    const name = playerNameInput.value.trim() || "Jogador";
+    saveHighScore(name, seconds);
+    playerNameInput.value = "";
+    namePrompt.style.display = "none";
+    playAgain.style.display = "inline-block";
+    showRanking("gameover");
+}
+
+function showRanking(source) {
+    rankingSource = source;
+    rankingOverlay.classList.remove("hidden");
+    rankingTitle.textContent = `🏆 Ranking da Memória — ${difficulty === "easy" ? "Fácil" : "Difícil"}`;
+    const ranking = getRanking();
+    rankingList.innerHTML = "";
+
+    if (ranking.length === 0) {
+        const item = document.createElement("li");
+        item.textContent = "Ainda não há pontuações registradas.";
+        rankingList.appendChild(item);
+        return;
+    }
+
+    ranking.forEach((entry, index) => {
+        const item = document.createElement("li");
+        const minutes = String(Math.floor(entry.time / 60)).padStart(2, "0");
+        const secondsPart = String(entry.time % 60).padStart(2, "0");
+        item.textContent = `${index + 1}. ${entry.name} — ${minutes}:${secondsPart}`;
+        rankingList.appendChild(item);
+    });
+}
+
+function closeRanking() {
+    rankingOverlay.classList.add("hidden");
+
+    if (rankingSource === "gameover") {
+        winScreen.classList.remove("hidden");
+    }
 }
 
 
