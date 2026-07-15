@@ -22,7 +22,7 @@ const GAMES = {
     title: 'Jogo das uvas',
     desc: 'Ajude a raposa a colher o maior número possível de cachos de uva desviando dos obstáculos pelo caminho.',
     image: 'assets/uvas.png',
-    href: '#'
+    href: 'uvas.html'
   },
 
   pescaria: {

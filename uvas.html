@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo das Uvas - Portal de Jogos</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jogo.css">
+    <link rel="stylesheet" href="uvas.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="header__inner">
+
+        <a href="index.html">
+
+            <img src="assets/logo.png" class="header__logo" alt="Portal de Jogos">
+
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+    <nav class="dropdown" id="dropdownMenu">
+
+        <a href="#">Login</a>
+
+        <a href="#">Histórico</a>
+
+        <a href="#">Favoritos</a>
+
+    </nav>
+
+</header>
+
+<!-- =========================
+     JOGO
+========================= -->
+
+<main class="pagina-jogo">
+
+    <h1 class="titulo-jogo">
+        � Jogo das Uvas 🍇
+    </h1>
+
+    <p class="subtitulo-jogo">
+        Ajude a raposa a colher o maior número possível de uvas antes que o tempo acabe!
+    </p>
+
+    <!-- HUD -->
+
+    <div class="hud">
+
+        <div>
+            ⭐ Pontos:
+            <span id="score">0</span>
+        </div>
+
+        <div>
+            ⏰ Tempo:
+            <span id="timer">30</span>s
+        </div>
+
+        <div id="difficultyLabel">
+            🌸 Fácil
+        </div>
+
+    </div>
+
+    <!-- BARRA DE TEMPO -->
+
+    <div class="timer-container">
+
+        <div
+            id="timerBar"
+            class="timer-bar">
+        </div>
+
+    </div>
+
+    <!-- ÁREA DO JOGO -->
+
+    <div id="gameArea">
+
+        <img
+            id="kitty"
+            src="assets/uvas/raposaneutra.png"
+            alt="Raposa">
+
+        <img
+            id="kuromi"
+            src="assets/uvas/raposatriste.png"
+            alt="Raposa triste"
+            style="display:none;">
+
+        <div id="startOverlay" class="start-overlay">
+            <div class="menu-inicial">
+
+                <img
+                    src="assets/uvas/raposafeliz.png"
+                    alt="Raposa feliz"
+                    class="menu-kitty">
+
+                <h2>
+                    � Jogo das Uvas 🍇
+                </h2>
+
+                <p>
+                    Colete o máximo de uvas possível em 30 segundos.
+                </p>
+
+                <p>
+                    🍇 Uva roxa = +1 ponto
+                </p>
+
+                <p>
+                    👑 Uva dourada = +3 pontos
+                </p>
+
+                <p>
+                    🐛 Lagarta = Tontura por 3 segundos
+                </p>
+
+                <label for="difficultySelect">Dificuldade:</label>
+                <select id="difficultySelect">
+                    <option value="easy">🌸 Fácil</option>
+                    <option value="hard">⭐ Difícil</option>
+                </select>
+
+                <div class="menu-botoes">
+                    <button id="startBtn">
+                        Iniciar
+                    </button>
+                    <button id="multiplayerBtn">
+                        Modo Multiplayer
+                    </button>
+                    <button id="rankingBtn">
+                        Ranking
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<!-- =========================
+     RESULTADO
+========================= -->
+
+<div
+    id="resultOverlay"
+    class="overlay resultado">
+
+    <div class="menu-inicial">
+
+        <img
+            src="assets/uvas/raposafeliz.png"
+            alt="Vitória"
+            class="victory-img">
+
+        <h2 id="finalTitle">
+            🎉 Tempo Esgotado!
+        </h2>
+
+        <h3 id="finalScore">
+            Pontuação: 0
+        </h3>
+
+        <h3 id="finalRank">
+            Aprendiz da Floresta
+        </h3>
+
+        <div id="namePrompt" class="name-prompt" style="display:none;">
+            <p>Parabéns! Você entrou no Top 10. Digite seu nome:</p>
+            <input id="playerNameInput" type="text" placeholder="Seu nome" maxlength="20">
+            <button id="saveScoreBtn">Salvar</button>
+        </div>
+
+        <button id="restartBtn">
+            Jogar Novamente
+        </button>
+
+    </div>
+
+</div>
+
+<div id="rankingOverlay" class="overlay ranking-overlay" style="display:none;">
+    <div class="menu-inicial">
+        <h2>🏆 Ranking das Uvas</h2>
+        <ol id="rankingList" class="ranking-list"></ol>
+        <button id="rankingBackBtn">Voltar</button>
+    </div>
+</div>
+
+<div id="multiplayerResultOverlay" class="overlay multiplayer-result" style="display:none;">
+    <div class="menu-inicial">
+        <h2>🎮 Fim da Caçada!</h2>
+        <img id="winnerImg" src="" alt="Vencedor" class="winner-img">
+        <div class="multiplayer-scores">
+            <div class="player-result">
+                <h3>🦊 Raposa Veloz</h3>
+                <p id="kittyScore">Pontuação: 0</p>
+            </div>
+            <div class="player-result">
+                <h3>🌲 Raposa da Floresta</h3>
+                <p id="kuromiScore">Pontuação: 0</p>
+            </div>
+        </div>
+        <h3 id="multiplayerWinner" style="color:#ff4f9a; margin: 20px 0;"></h3>
+        <button id="multiplayerBackBtn">Voltar</button>
+    </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p class="footer__title">
+
+        Projeto de WebDesign - Raquel Boff
+
+    </p>
+
+    <p class="footer__subtitle">
+
+        Imbé - RS, Brasil, 2026
+
+    </p>
+
+</footer>
+
+<script src="uvas.js"></script>
+
+</body>
+</html>
