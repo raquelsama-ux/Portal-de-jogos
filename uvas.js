@@ -233,7 +233,7 @@ function startMultiplayer(){
     kuromiScore = 0;
     timeLeft = 30;
 
-    scoreDisplay.textContent = "🐱 " + kittyScore + " | 🖤 " + kuromiScore;
+    scoreDisplay.textContent = "🦊 " + kittyScore + " | 🐺 " + kuromiScore;
     timerDisplay.textContent = timeLeft;
 
     if(timerBar){
@@ -597,9 +597,16 @@ function collectObject(obj, player = "single"){
 
 function setCharacterExpression(character, expression, duration = 450){
 
-    const neutralSrc = "assets/uvas/raposaneutra.png";
-    const happySrc = "assets/uvas/raposafeliz.png";
-    const sadSrc = "assets/uvas/raposatriste.png";
+    const isKuromi = character === kuromi;
+    const neutralSrc = isKuromi
+        ? "assets/uvas/loboneutro.png"
+        : "assets/uvas/raposaneutra.png";
+    const happySrc = isKuromi
+        ? "assets/uvas/lobofeliz.png"
+        : "assets/uvas/raposafeliz.png";
+    const sadSrc = isKuromi
+        ? "assets/uvas/lobotriste.png"
+        : "assets/uvas/raposatriste.png";
 
     let nextSrc = neutralSrc;
 
@@ -621,8 +628,13 @@ function setCharacterExpression(character, expression, duration = 450){
 
 function resetCharacterExpression(character){
 
+    const isKuromi = character === kuromi;
+    const neutralSrc = isKuromi
+        ? "assets/uvas/loboneutro.png"
+        : "assets/uvas/raposaneutra.png";
+
     clearTimeout(character.expressionTimer);
-    character.src = "assets/uvas/raposaneutra.png";
+    character.src = neutralSrc;
 }
 
 // =========================
@@ -779,33 +791,33 @@ function getRank(){
     if(difficulty === "easy"){
 
         if(score >= 45)
-            return "👑 Rainha dos Laços";
+            return "👑 Rei da floresta";
 
         if(score >= 35)
-            return "💖 Princesa Kawaii";
+            return "Caçador experiente";
 
         if(score >= 25)
-            return "🌸 Amiga da Hello Kitty";
+            return "Pequeno caçador";
 
         if(score >= 15)
-            return "🎀 Colecionadora de Laços";
+            return "Raposa faminta";
 
-        return "🐱 Aprendiz Sanrio";
+        return "Raposa aprendiz";
     }
 
     if(score >= 60)
-        return "👑 Rainha dos Laços";
+        return "👑 Rei da floresta";
 
     if(score >= 45)
-        return "💖 Princesa Kawaii";
+        return "Caçador experiente";
 
     if(score >= 30)
-        return "🌸 Amiga da Hello Kitty";
+        return "Pequeno caçador";
 
     if(score >= 20)
-        return "🎀 Colecionadora de Laços";
+        return "Raposa faminta";
 
-    return "🐱 Aprendiz Sanrio";
+    return "Raposa aprendiz";
 }
 
 // =========================
@@ -861,11 +873,11 @@ function endMultiplayer(){
     kuromiScoreDisplay.textContent = "Pontuação: " + kuromiScore;
 
     if(kittyScore > kuromiScore){
-        multiplayerWinner.textContent = "🎉 Hello Kitty venceu!";
+        multiplayerWinner.textContent = "🎉 Raposa venceu!";
         winnerImg.src = "assets/uvas/raposafeliz.png";
     } else if(kuromiScore > kittyScore){
-        multiplayerWinner.textContent = "🎉 Kuromi venceu!";
-        winnerImg.src = "assets/uvas/raposatriste.png";
+        multiplayerWinner.textContent = "🎉 Lobo venceu!";
+        winnerImg.src = "assets/uvas/lobofeliz.png";
     } else {
         multiplayerWinner.textContent = "🤝 Empate!";
         winnerImg.src = "";

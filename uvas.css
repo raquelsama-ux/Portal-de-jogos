@@ -255,17 +255,17 @@ body{
    HELLO KITTY
 ========================= */
 
-#kitty{
+#kitty,
+#kuromi{
 
     position:absolute;
 
     width:90px;
+    height:90px;
+    object-fit:contain;
 
     bottom:20px;
     left:50%;
-
-    transform:
-        translateX(-50%);
 
     z-index:10;
 
@@ -273,22 +273,16 @@ body{
     pointer-events:none;
 }
 
+#kitty{
+
+    transform:
+        translateX(-50%);
+}
+
 #kuromi{
-
-    position:absolute;
-
-    width:90px;
-
-    bottom:20px;
-    left:50%;
 
     transform:
         translateX(-50%) scaleX(-1);
-
-    z-index:10;
-
-    user-select:none;
-    pointer-events:none;
 }
 
 /* =========================
@@ -434,8 +428,8 @@ body{
 .menu-kitty{
 
     width:120px;
-
-    margin-bottom:20px;
+    display:block;
+    margin:0 auto 20px auto;
 }
 
 .menu-inicial h2{
@@ -537,8 +531,8 @@ body{
 .victory-img{
 
     width:220px;
-
-    margin-bottom:20px;
+    display:block;
+    margin:0 auto 20px auto;
 }
 
 #finalTitle{
@@ -574,6 +568,8 @@ body{
 
 .winner-img{
     width:180px;
+    height:180px;
+    object-fit:contain;
     margin:20px auto;
     display:block;
 }
