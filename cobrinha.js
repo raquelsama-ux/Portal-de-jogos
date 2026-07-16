@@ -58,17 +58,17 @@ let rankingSource    = 'menu';
 
 // ---- carregamento das imagens ----
 const IMG_SRC = {
-  cabeca:   '/assets/cobrinha/cobracabeca.png',
-  cauda:    '/assets/cobrinha/cobracauda.png',
-  corpoH:   '/assets/cobrinha/cobracorpoH.png',
-  corpoV:   '/assets/cobrinha/cobracorpoV.png',
-  curvaLD:  '/assets/cobrinha/cobracurvaLD.png',
-  curvaRD:  '/assets/cobrinha/cobracurvaRD.png',
-  curvaTL:  '/assets/cobrinha/cobracurvaTL.png',
-  curvaTR:  '/assets/cobrinha/cobracurvaTR.png',
-  ratinho:  '/assets/cobrinha/ratinho.png',
-  espinho:  '/assets/cobrinha/espinho.png',
-  fundo:    '/assets/cobrinha/fundocobra2.jpg'
+  cabeca:   'assets/cobrinha/cobracabeca.png',
+  cauda:    'assets/cobrinha/cobracauda.png',
+  corpoH:   'assets/cobrinha/cobracorpoH.png',
+  corpoV:   'assets/cobrinha/cobracorpoV.png',
+  curvaLD:  'assets/cobrinha/cobracurvaLD.png',
+  curvaRD:  'assets/cobrinha/cobracurvaRD.png',
+  curvaTL:  'assets/cobrinha/cobracurvaTL.png',
+  curvaTR:  'assets/cobrinha/cobracurvaTR.png',
+  ratinho:  'assets/cobrinha/ratinho.png',
+  espinho:  'assets/cobrinha/espinho.png',
+  fundo:    'assets/cobrinha/fundocobra2.jpg'
 };
 const images = {};
 let assetsReady = false;
