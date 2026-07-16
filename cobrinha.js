@@ -68,7 +68,7 @@ const IMG_SRC = {
   curvaTR:  '/assets/cobrinha/cobracurvaTR.png',
   ratinho:  '/assets/cobrinha/ratinho.png',
   espinho:  '/assets/cobrinha/espinho.png',
-  fundo:    '/assets/cobrinha/fundocobra.jpg'
+  fundo:    '/assets/cobrinha/fundocobra2.jpg'
 };
 const images = {};
 let assetsReady = false;
