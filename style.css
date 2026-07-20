@@ -249,11 +249,45 @@ button{ font-family:inherit; cursor:pointer; }
   box-shadow:0 10px 22px rgba(180,80,20,.3);
 }
 
-/* posições ao longo do arco à frente da mascote, seguindo o anel */
-.orb--1{ left:78%; top:16%; animation-delay:.35s; }
-.orb--2{ left:97%; top:39%; animation-delay:.48s; }
-.orb--3{ left:94%; top:66%; animation-delay:.61s; }
-.orb--4{ left:74%; top:89%; animation-delay:.74s; }
+/* =====================================================
+   6 jogos distribuídos em um círculo ao redor da loba
+   ===================================================== */
+
+.orb--1{
+    left:50%;
+    top:6%;
+    animation-delay:.35s;
+}
+
+.orb--2{
+    left:84%;
+    top:22%;
+    animation-delay:.48s;
+}
+
+.orb--3{
+    left:93%;
+    top:60%;
+    animation-delay:.61s;
+}
+
+.orb--4{
+    left:69%;
+    top:89%;
+    animation-delay:.74s;
+}
+
+.orb--5{
+    left:31%;
+    top:89%;
+    animation-delay:.87s;
+}
+
+.orb--6{
+    left:7%;
+    top:22%;
+    animation-delay:1s;
+}
 
 @keyframes orbIntro{
   to{ opacity:1; transform:translate(-50%,-50%) scale(1); }

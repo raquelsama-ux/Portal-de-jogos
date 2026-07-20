@@ -1,0 +1,768 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:"Baloo 2",sans-serif;
+    background:#FAF0CA;
+    color:#0D3B66;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    width:100%;
+    background:#0D3B66;
+    padding:15px 0;
+    position:relative;
+    z-index:100;
+
+}
+
+.header-inner{
+
+    width:min(1200px,95%);
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+.logo{
+
+    height:70px;
+    transition:.25s;
+
+}
+
+.logo:hover{
+
+    transform:scale(1.05);
+
+}
+
+.menu-btn{
+
+    border:none;
+    background:none;
+
+    color:white;
+
+    font-size:2.2rem;
+
+    cursor:pointer;
+
+}
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.dropdown{
+
+    position:absolute;
+
+    top:100%;
+    right:30px;
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    min-width:200px;
+
+    display:none;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.dropdown.show{
+
+    display:block;
+
+}
+
+.dropdown a{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#0D3B66;
+
+    padding:14px;
+
+    font-weight:700;
+
+}
+
+.dropdown a:hover{
+
+    background:#F4D35E;
+
+}
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.title-area{
+
+    text-align:center;
+
+    margin:20px 0;
+
+}
+
+.title-area h1{
+
+    font-size:2.5rem;
+
+    color:#2E8B57;
+
+}
+
+.title-area p{
+
+    font-size:1.2rem;
+
+}
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.hud{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+.hud-card{
+
+    width:170px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.hud-card span{
+
+    display:block;
+
+    font-size:1rem;
+
+}
+
+.hud-card strong{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:2rem;
+
+    color:#0D3B66;
+
+}
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+.game-container{
+
+    width:min(1200px,95%);
+
+    margin:auto;
+
+    border:8px solid #0D3B66;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+}
+
+#gameCanvas{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    background:black;
+
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(13,59,102,.55);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu-card{
+
+    width:min(600px,92%);
+
+    background:#FAF0CA;
+
+    border:6px solid #F4D35E;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.menu-card h1{
+
+    font-size:3rem;
+
+    color:#F95738;
+
+    margin-bottom:20px;
+
+}
+
+.menu-card p{
+
+    font-size:1.3rem;
+
+    margin:10px 0;
+
+}
+
+/* =========================================================
+   PONTUAÇÃO
+========================================================= */
+
+.points{
+
+    margin:25px 0;
+
+}
+
+.points p{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    font-size:1.5rem;
+
+    margin:12px 0;
+
+}
+
+.points img{
+
+    width:60px;
+
+}
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+.menu-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:30px;
+
+}
+
+#startBtn,
+#restartBtn,
+#saveScoreBtn,
+.secondaryBtn{
+
+    width:240px;
+
+    height:70px;
+
+    border:none;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    font-family:"Baloo 2",sans-serif;
+
+    font-size:1.6rem;
+
+    font-weight:800;
+
+    transition:.25s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.20);
+
+}
+
+#startBtn,
+#restartBtn{
+
+    background:#F95738;
+
+    color:white;
+
+}
+
+#startBtn:hover,
+#restartBtn:hover{
+
+    background:#EE964B;
+
+    transform:translateY(-4px);
+
+}
+
+.secondaryBtn,
+#saveScoreBtn{
+
+    background:#0D3B66;
+
+    color:white;
+
+}
+
+.secondaryBtn:hover,
+#saveScoreBtn:hover{
+
+    background:#245A90;
+
+    transform:translateY(-4px);
+
+}
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+#resultMessage{
+
+    font-size:1.3rem;
+
+    margin:20px 0;
+
+    color:#0D3B66;
+
+}
+
+#finalScore{
+
+    color:#F95738;
+
+    font-size:3.5rem;
+
+}
+
+#finalLevel{
+
+    color:#2E8B57;
+
+    font-size:2.5rem;
+
+}
+
+/* =========================================================
+   SALVAR PONTUAÇÃO
+========================================================= */
+
+#saveArea{
+
+    margin:25px 0;
+
+}
+
+#playerName{
+
+    width:100%;
+
+    max-width:420px;
+
+    height:60px;
+
+    border:3px solid #F4D35E;
+
+    border-radius:18px;
+
+    padding:0 20px;
+
+    font-size:1.3rem;
+
+    font-family:"Baloo 2",sans-serif;
+
+    text-align:center;
+
+    outline:none;
+
+    margin-bottom:20px;
+
+}
+
+#playerName:focus{
+
+    border-color:#2E8B57;
+
+}
+
+/* =========================================================
+   RANKING
+========================================================= */
+
+#rankingList,
+#rankingOnlyList{
+
+    list-style:none;
+
+    margin-top:25px;
+
+    width:100%;
+
+}
+
+#rankingList li,
+#rankingOnlyList li{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 18px;
+
+    margin:8px 0;
+
+    background:white;
+
+    border-radius:12px;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+
+}
+
+#rankingList li strong,
+#rankingOnlyList li strong{
+
+    color:#F95738;
+
+}
+
+/* =========================================================
+   MEDALHAS
+========================================================= */
+
+#rankingList li:nth-child(1)::before,
+#rankingOnlyList li:nth-child(1)::before{
+
+    content:"🥇 ";
+
+}
+
+#rankingList li:nth-child(2)::before,
+#rankingOnlyList li:nth-child(2)::before{
+
+    content:"🥈 ";
+
+}
+
+#rankingList li:nth-child(3)::before,
+#rankingOnlyList li:nth-child(3)::before{
+
+    content:"🥉 ";
+
+}
+
+/* =========================================================
+   NOVA PONTUAÇÃO
+========================================================= */
+
+.ranking-highlight{
+
+    background:#F4D35E !important;
+
+    color:#0D3B66;
+
+    font-weight:800;
+
+    animation:highlightPulse .8s infinite alternate;
+
+}
+
+@keyframes highlightPulse{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.03);
+
+    }
+
+}
+
+/* =========================================================
+   TELA DE FASE
+========================================================= */
+
+#phaseScreen h1{
+
+    color:#2E8B57;
+
+    font-size:3rem;
+
+}
+
+#phaseScreen p{
+
+    font-size:1.5rem;
+
+    margin-top:20px;
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    margin-top:auto;
+
+    width:100%;
+
+    background:#0D3B66;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+}
+
+.footer-title{
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+.overlay{
+
+    animation:fadeIn .35s;
+
+}
+
+.menu-card{
+
+    animation:fadeIn .35s;
+
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width:900px){
+
+    .title-area h1{
+
+        font-size:2rem;
+
+    }
+
+    .hud-card{
+
+        width:140px;
+
+    }
+
+    .menu-card{
+
+        padding:25px;
+
+    }
+
+    .menu-card h1{
+
+        font-size:2.2rem;
+
+    }
+
+    .menu-card p{
+
+        font-size:1.1rem;
+
+    }
+
+    .points img{
+
+        width:45px;
+
+    }
+
+    #startBtn,
+    #restartBtn,
+    #saveScoreBtn,
+    .secondaryBtn{
+
+        width:210px;
+
+        height:60px;
+
+        font-size:1.3rem;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hud{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .logo{
+
+        height:55px;
+
+    }
+
+    .title-area h1{
+
+        font-size:1.7rem;
+
+    }
+
+    .points p{
+
+        font-size:1.1rem;
+
+    }
+
+    #playerName{
+
+        font-size:1.1rem;
+
+        height:52px;
+
+    }
+
+}

@@ -1,0 +1,716 @@
+/*==================================================
+JOANINHA
+PARTE 1
+==================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    font-family:"Nunito",sans-serif;
+
+    background:#faf0ca;
+
+    color:#0d3b66;
+
+}
+
+/*==================================================
+HEADER
+==================================================*/
+
+.header{
+
+    width:100%;
+
+    background:#0d3b66;
+
+    color:white;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.18);
+
+}
+
+.header__inner{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    padding:12px 24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+.header__logo{
+
+    height:64px;
+
+    display:block;
+
+    cursor:pointer;
+
+}
+
+.menu-toggle{
+
+    width:54px;
+    height:54px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#f95738;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    transition:.25s;
+
+}
+
+.menu-toggle:hover{
+
+    transform:scale(1.05);
+
+}
+
+.menu-toggle span{
+
+    width:28px;
+
+    height:4px;
+
+    border-radius:5px;
+
+    background:white;
+
+}
+
+/*==================================================
+MENU
+==================================================*/
+
+.dropdown{
+
+    position:absolute;
+
+    right:20px;
+
+    top:82px;
+
+    background:white;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    min-width:220px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    display:none;
+
+}
+
+.dropdown.is-open{
+
+    display:block;
+
+}
+
+.dropdown a{
+
+    display:block;
+
+    padding:15px 18px;
+
+    text-decoration:none;
+
+    color:#0d3b66;
+
+    font-weight:700;
+
+    transition:.2s;
+
+}
+
+.dropdown a:hover{
+
+    background:#f4d35e;
+
+}
+
+/*==================================================
+TÍTULO
+==================================================*/
+
+.page-title{
+
+    text-align:center;
+
+    padding:25px 15px 10px;
+
+}
+
+.page-title h1{
+
+    font-family:"Baloo 2",cursive;
+
+    font-size:2.6rem;
+
+    color:#f95738;
+
+}
+
+/*==================================================
+HUD
+==================================================*/
+
+.hud{
+
+    width:min(1100px,95%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:18px;
+
+}
+
+.hud-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:14px;
+
+    text-align:center;
+
+    font-weight:800;
+
+    color:#0d3b66;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+    border:3px solid #f4d35e;
+
+}
+
+.hud-card span{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:1.2rem;
+
+    color:#f95738;
+
+}
+
+/*==================================================
+ÁREA DO JOGO
+==================================================*/
+
+.game-wrapper{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:10px 20px 30px;
+
+}
+
+canvas{
+
+    max-width:100%;
+
+    height:auto;
+
+    border-radius:24px;
+
+    border:6px solid #0d3b66;
+
+    background:#ffffff;
+
+    box-shadow:0 20px 35px rgba(0,0,0,.18);
+
+}
+
+/*==================================================
+FOOTER
+==================================================*/
+
+.footer{
+
+    margin-top:auto;
+
+    background:#0d3b66;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+}
+
+.footer__title{
+
+    font-weight:800;
+
+}
+
+.footer__subtitle{
+
+    opacity:.85;
+
+    font-size:.95rem;
+
+    margin-top:5px;
+
+}
+
+/*==================================================
+OVERLAYS
+==================================================*/
+
+.overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(13,59,102,.72);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:2000;
+
+    backdrop-filter:blur(6px);
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+/*==================================================
+MENU CARD
+==================================================*/
+
+.menu-card{
+
+    width:min(92%,650px);
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 25px 45px rgba(0,0,0,.28);
+
+    animation:pop .35s ease;
+
+}
+
+@keyframes pop{
+
+    from{
+
+        opacity:0;
+        transform:scale(.85);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+.menu-card h1{
+
+    font-family:"Baloo 2",cursive;
+
+    font-size:2.3rem;
+
+    color:#f95738;
+
+    margin-bottom:18px;
+
+}
+
+.menu-card h2{
+
+    margin-top:22px;
+
+    margin-bottom:10px;
+
+    color:#0d3b66;
+
+}
+
+.menu-card h3{
+
+    margin-top:12px;
+
+    color:#ee964b;
+
+}
+
+.menu-card p{
+
+    line-height:1.6;
+
+    margin-bottom:18px;
+
+    color:#0d3b66;
+
+}
+
+/*==================================================
+LEGENDA
+==================================================*/
+
+.legend{
+
+    background:#faf0ca;
+
+    border:2px solid #f4d35e;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:left;
+
+    margin:20px 0;
+
+}
+
+.legend p{
+
+    margin:10px 0;
+
+    font-weight:700;
+
+}
+
+/*==================================================
+BOTÕES
+==================================================*/
+
+.menu-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+
+}
+
+button{
+
+    font-family:"Baloo 2",cursive;
+
+    font-size:1.15rem;
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+button:active{
+
+    transform:scale(.95);
+
+}
+
+#startBtn,
+#restartBtn,
+#saveScoreBtn{
+
+    background:#f95738;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 12px rgba(0,0,0,.18);
+
+}
+
+.secondaryBtn,
+#closeRankingBtn{
+
+    background:#0d3b66;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 12px rgba(0,0,0,.18);
+
+}
+
+/*==================================================
+INPUT
+==================================================*/
+
+#playerName{
+
+    width:100%;
+
+    max-width:320px;
+
+    margin-top:15px;
+    margin-bottom:15px;
+
+    padding:12px 15px;
+
+    border-radius:14px;
+
+    border:2px solid #ee964b;
+
+    font-size:1rem;
+
+    text-align:center;
+
+}
+
+#playerName:focus{
+
+    outline:none;
+
+    border-color:#f95738;
+
+}
+
+/*==================================================
+RANKING
+==================================================*/
+
+#rankingList,
+#rankingOnlyList{
+
+    margin-top:18px;
+
+    text-align:left;
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+#rankingList li,
+#rankingOnlyList li{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#faf0ca;
+
+    margin-bottom:10px;
+
+    padding:12px 16px;
+
+    border-radius:14px;
+
+    border-left:8px solid #f95738;
+
+    font-weight:700;
+
+}
+
+#rankingList span,
+#rankingOnlyList span{
+
+    color:#0d3b66;
+
+    font-size:.95rem;
+
+}
+
+/*==================================================
+DESTAQUE NOVA PONTUAÇÃO
+==================================================*/
+
+.ranking-highlight{
+
+    background:#fff7c8 !important;
+
+    border-left-color:#ffd93b !important;
+
+    animation:flash 1s infinite alternate;
+
+}
+
+@keyframes flash{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.03);
+
+    }
+
+}
+
+/*==================================================
+RESPONSIVO
+==================================================*/
+
+@media(max-width:900px){
+
+    .hud{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .page-title h1{
+
+        font-size:2rem;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .header__logo{
+
+        height:50px;
+
+    }
+
+    .menu-toggle{
+
+        width:46px;
+        height:46px;
+
+    }
+
+    .hud{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .menu-card{
+
+        padding:24px;
+
+    }
+
+    .menu-card h1{
+
+        font-size:1.8rem;
+
+    }
+
+    .menu-buttons{
+
+        flex-direction:column;
+
+    }
+
+    #startBtn,
+    #restartBtn,
+    #saveScoreBtn,
+    .secondaryBtn,
+    #closeRankingBtn{
+
+        width:100%;
+
+    }
+
+    #rankingList li,
+    #rankingOnlyList li{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:6px;
+
+    }
+
+}

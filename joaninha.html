@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jogo da Joaninha</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="joaninha.css">
+
+</head>
+
+<body>
+
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
+
+<header class="header">
+
+    <div class="header__inner">
+
+        <a href="index.html">
+
+            <img src="assets/logo.png"
+                 alt="Portal de Jogos"
+                 class="header__logo">
+
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Abrir menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+    <nav class="dropdown" id="dropdownMenu">
+
+        <a href="#">Login</a>
+
+        <a href="#">Histórico</a>
+
+        <a href="#">Favoritos</a>
+
+    </nav>
+
+</header>
+
+<!-- ===================================================== -->
+<!-- TÍTULO -->
+<!-- ===================================================== -->
+
+<section class="page-title">
+
+    <h1>
+
+        🐞 Jogo da Joaninha
+
+    </h1>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- HUD -->
+<!-- ===================================================== -->
+
+<section class="hud">
+
+    <div class="hud-card">
+
+        ❤️ Vidas
+
+        <span id="lives">
+
+            ❤️❤️❤️
+
+        </span>
+
+    </div>
+
+    <div class="hud-card">
+
+        ⭐ Fase
+
+        <span id="level">
+
+            1
+
+        </span>
+
+    </div>
+
+    <div class="hud-card">
+
+        🏆 Pontos
+
+        <span id="score">
+
+            0
+
+        </span>
+
+    </div>
+
+    <div class="hud-card">
+
+        🐞 Joaninhas
+
+        <span id="balls">
+
+            1
+
+        </span>
+
+    </div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- JOGO -->
+<!-- ===================================================== -->
+
+<main class="game-wrapper">
+
+    <canvas
+        id="gameCanvas"
+        width="1000"
+        height="650">
+
+    </canvas>
+
+</main>
+
+<!-- ===================================================== -->
+<!-- MENU INICIAL -->
+<!-- ===================================================== -->
+
+<div
+    id="startScreen"
+    class="overlay">
+
+    <div class="menu-card">
+
+        <h1>
+
+            🐞 Jogo da Joaninha
+
+        </h1>
+
+        <p>
+
+            Rebata a joaninha e destrua todos os blocos!
+
+        </p>
+
+        <div class="legend">
+
+            <p>
+
+                🐞 Joaninha = bola principal
+
+            </p>
+
+            <p>
+
+                🪰 Libélula = cria outra joaninha
+
+            </p>
+
+            <p>
+
+                ✨ Vaga-lume = atravessa blocos por 8 segundos
+
+            </p>
+
+            <p>
+
+                ❤️ Coração = vida extra
+
+            </p>
+
+        </div>
+
+        <div class="menu-buttons">
+
+            <button id="startBtn">
+
+                ▶ Começar
+
+            </button>
+
+            <button
+                id="rankingBtn"
+                class="secondaryBtn">
+
+                🏆 Top 10
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- NOVA FASE -->
+<!-- ===================================================== -->
+
+<div
+    id="phaseScreen"
+    class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1 id="phaseTitle">
+
+            Fase 2
+
+        </h1>
+
+    </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- GAME OVER -->
+<!-- ===================================================== -->
+
+<div
+    id="gameOverScreen"
+    class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1>
+
+            🏆 Fim de jogo!
+
+        </h1>
+
+        <p id="resultMessage">
+
+        </p>
+
+        <h2>
+
+            Pontuação:
+            <span id="finalScore">
+
+                0
+
+            </span>
+
+        </h2>
+
+        <h3>
+
+            Fase:
+            <span id="finalLevel">
+
+                1
+
+            </span>
+
+        </h3>
+
+        <div id="saveArea">
+
+            <input
+                type="text"
+                id="playerName"
+                maxlength="20"
+                placeholder="Digite seu nome">
+
+            <button id="saveScoreBtn">
+
+                Salvar pontuação
+
+            </button>
+
+        </div>
+
+        <h2>
+
+            🏆 Top 10
+
+        </h2>
+
+        <ol id="rankingList">
+
+        </ol>
+
+        <button id="restartBtn">
+
+            Jogar novamente
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- RANKING -->
+<!-- ===================================================== -->
+
+<div
+    id="rankingScreen"
+    class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1>
+
+            🏆 Top 10
+
+        </h1>
+
+        <ol id="rankingOnlyList">
+
+        </ol>
+
+        <button id="closeRankingBtn">
+
+            Fechar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
+
+<footer class="footer">
+
+    <p class="footer__title">
+
+        Projeto de WebDesign - Raquel Boff
+
+    </p>
+
+    <p class="footer__subtitle">
+
+        Imbé - RS, Brasil, 2026
+
+    </p>
+
+</footer>
+
+<script src="joaninha.js"></script>
+
+</body>
+
+</html>

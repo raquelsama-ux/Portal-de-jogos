@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jogo do Sapo | Portal de Jogos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="sapo.css">
+
+</head>
+
+<body>
+
+<!-- ========================================================= -->
+<!-- HEADER -->
+<!-- ========================================================= -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="index.html">
+            <img src="assets/logo.png" class="logo" alt="Portal de Jogos">
+        </a>
+
+        <button class="menu-btn" id="menuBtn">
+
+            ☰
+
+        </button>
+
+    </div>
+
+    <nav class="dropdown" id="dropdown">
+
+        <a href="#">Login</a>
+        <a href="#">Histórico</a>
+        <a href="#">Favoritos</a>
+
+    </nav>
+
+</header>
+
+<!-- ========================================================= -->
+<!-- TÍTULO -->
+<!-- ========================================================= -->
+
+<section class="title-area">
+
+    <h1>🐸 Jogo do Sapo</h1>
+
+    <p>
+        Devore todos os insetos antes que eles alcancem você!
+    </p>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- HUD -->
+<!-- ========================================================= -->
+
+<section class="hud">
+
+    <div class="hud-card">
+
+        <span>⭐ Pontos</span>
+
+        <strong id="score">
+            0
+        </strong>
+
+    </div>
+
+    <div class="hud-card">
+
+        <span>🏁 Fase</span>
+
+        <strong id="level">
+            1
+        </strong>
+
+    </div>
+
+    <div class="hud-card">
+
+        <span>🪰 Restantes</span>
+
+        <strong id="remaining">
+            15
+        </strong>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- CANVAS -->
+<!-- ========================================================= -->
+
+<div class="game-container">
+
+    <canvas
+        id="gameCanvas"
+        width="1100"
+        height="650">
+    </canvas>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- MENU INICIAL -->
+<!-- ========================================================= -->
+
+<div id="startScreen" class="overlay">
+
+    <div class="menu-card">
+
+        <h1>🐸 Jogo do Sapo</h1>
+
+        <p>
+
+            Mova o sapo com as setas do teclado.
+
+        </p>
+
+        <p>
+
+            Pressione ESPAÇO para lançar a língua.
+
+        </p>
+
+        <div class="points">
+
+            <p>
+
+                <img src="assets/sapo/mosca.png">
+
+                = 1 ponto
+
+            </p>
+
+            <p>
+
+                <img src="assets/sapo/aranha.png">
+
+                = 2 pontos
+
+            </p>
+
+            <p>
+
+                <img src="assets/sapo/vagalume.png">
+
+                = 5 pontos
+
+            </p>
+
+        </div>
+
+        <div class="menu-buttons">
+
+            <button id="startBtn">
+
+                ▶ Começar
+
+            </button>
+
+            <button
+                id="rankingBtn"
+                class="secondaryBtn">
+
+                🏆 Top 10
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- FASE -->
+<!-- ========================================================= -->
+
+<div id="phaseScreen" class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1 id="phaseTitle">
+
+            Fase 2
+
+        </h1>
+
+        <p>
+
+            Uma nova tartaruga apareceu!
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- RANKING -->
+<!-- ========================================================= -->
+
+<div id="rankingScreen" class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1>
+
+            🏆 Top 10
+
+        </h1>
+
+        <ol id="rankingOnlyList">
+
+        </ol>
+
+        <button
+            id="closeRankingBtn"
+            class="secondaryBtn">
+
+            Fechar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- GAME OVER -->
+<!-- ========================================================= -->
+
+<div id="gameOverScreen" class="overlay hidden">
+
+    <div class="menu-card">
+
+        <h1>
+
+            💀 Fim de jogo
+
+        </h1>
+
+        <p id="resultMessage">
+
+        </p>
+
+        <h2>
+
+            Pontuação:
+            <span id="finalScore">
+                0
+            </span>
+
+        </h2>
+
+        <h3>
+
+            Fase alcançada:
+            <span id="finalLevel">
+                1
+            </span>
+
+        </h3>
+
+        <div id="saveArea">
+
+            <input
+                id="playerName"
+                maxlength="20"
+                placeholder="Digite seu nome">
+
+            <button
+                id="saveScoreBtn">
+
+                Salvar pontuação
+
+            </button>
+
+        </div>
+
+        <h2>
+
+            🏆 Top 10
+
+        </h2>
+
+        <ol id="rankingList">
+
+        </ol>
+
+        <button
+            id="restartBtn">
+
+            Jogar novamente
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="footer">
+
+    <p class="footer-title">
+
+        Projeto de WebDesign - Raquel Boff
+
+    </p>
+
+    <p>
+
+        Imbé - RS, Brasil, 2026
+
+    </p>
+
+</footer>
+
+<script src="sapo.js"></script>
+
+</body>
+</html>

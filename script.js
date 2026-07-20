@@ -30,7 +30,22 @@ const GAMES = {
     desc: 'Controle o urso pescador e capture o maior número de peixes antes que o tempo termine.',
     image: 'assets/urso.png',
     href: 'urso.html'
-  }
+  },
+
+  sapo: {
+    title: 'Jogo do sapo',
+    desc: 'Devore todos os insetos antes que eles alcancem você! Use a língua para capturar moscas, aranhas e outros inimigos em diferentes fases.',
+    image: 'assets/sapo.png',
+    href: 'sapo.html'
+  },
+
+  joaninha: {
+    title: 'Jogo da Joaninha',
+    desc: 'Inspirado em Arkanoid. Rebata a joaninha para destruir todos os blocos. Libélulas criam novas joaninhas, vaga-lumes deixam a joaninha poderosa e corações concedem vidas extras.',
+    image: 'assets/joaninha.png',
+    href: 'joaninha.html'
+}
+
 };
 
 
